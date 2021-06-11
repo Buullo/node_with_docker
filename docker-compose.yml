@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: ./
+      target: dev
+    volumes:
+      - .:/src
+    command: npm run start:dev
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      DEBUG: node_with_docker:*
+
+networks:
+  default:
+    external:
+      name: dev_service_net
